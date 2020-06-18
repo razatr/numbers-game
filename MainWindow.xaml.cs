@@ -108,12 +108,29 @@ namespace Numbers
         {
             if((sender as Button).Content.ToString() == "Играть")
             {
-                min_number = int.Parse(MinNumberText.Text);
-                max_number = int.Parse(MaxNumberText.Text);
-                max_steps = int.Parse(NumberOfStepsText.Text);
-                honesty = int.Parse(ComputerHonestyText.Text);
+                try
+                {
+                    min_number = int.Parse(MinNumberText.Text);
+                    max_number = int.Parse(MaxNumberText.Text);
+                    max_steps = int.Parse(NumberOfStepsText.Text);
+                    honesty = int.Parse(ComputerHonestyText.Text);
+                }
+                catch(FormatException err)
+                {
+                    StatusBar.Text = err.Message;
+                    return;
+                }
+
+                if(min_number > max_number)
+                {
+                    StatusBar.Text = "Максимальное число должно быть больше минимального!";
+                    return;
+                }
+
                 number = rnd.Next(min_number, max_number);
+
                 difficulty = ((max_number - min_number + 1) / Convert.ToInt32(Math.Pow(2, max_steps))) *(2 - Math.Abs(honesty - 50)/50);
+                StatusBar.Text = "";
                 StartGame();
             }
             else
@@ -124,17 +141,35 @@ namespace Numbers
 
         private void SendAnswer(object sender, RoutedEventArgs e)
         {
-            int answer = int.Parse(AnswerText.Text);
+            int answer;
+            try
+            {
+                answer = int.Parse(AnswerText.Text);
+            }
+            catch (FormatException err)
+            {
+                StatusBar.Text = err.Message;
+                return;
+            }
             AnswerText.Text = "";
             int random = rnd.Next(0, 100);
-            StatusBar.Text = random.ToString();
+
+            if (answer > max_number || answer < min_number)
+            {
+                StatusBar.Text = "Введите число из диапазона между " + min_number.ToString() + " и " + max_number.ToString();
+                return;
+            }
+
             step++;
+
 
             if (answer == number)
             {
                 //Верный ответ
                 FeedbackText.Text = "Верный ответ";
+                StatusBar.Text = "Победа, попробуйте усложнить настройки";
                 EndGame();
+                return;
             }
 
             else if(answer > number && random <= honesty)
