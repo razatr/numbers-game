@@ -20,17 +20,17 @@
             <Grid>
                 <Label Content="Количество ходов" HorizontalAlignment="Left" Margin="4,10,0,0" VerticalAlignment="Top"/>
                 <Slider Name="NumberOfStepsSlider" Margin="4,46,10,226" Minimum="2" SmallChange="1" Value="2" TickPlacement="BottomRight" Delay="1000" Maximum="20" ValueChanged="ChangeStepNumber"/>
-                <TextBox Name="NumberOfStepsText" HorizontalAlignment="Left" Height="20" Margin="154,16,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="44" Text="2"/>
+                <TextBox Name="NumberOfStepsText" HorizontalAlignment="Left" Height="20" Margin="154,16,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="44" Text="2" TextChanged="ChangeNumberOfStepsText" LostFocus="NumberOfStepsLostFocus"/>
                 <Label Content="Минимальное число" HorizontalAlignment="Left" Margin="4,79,0,0" VerticalAlignment="Top"/>
                 <Slider Name="MinNumberSlider" Margin="4,115,10,157" SmallChange="1" Value="2" TickPlacement="BottomRight" Delay="1000" Maximum="1000" TickFrequency="50" ValueChanged="ChangeMinNumber"/>
-                <TextBox Name="MinNumberText" HorizontalAlignment="Left" Height="20" Margin="154,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="44" Text="0"/>
+                <TextBox Name="MinNumberText" HorizontalAlignment="Left" Height="20" Margin="154,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="44" Text="0" TextChanged="ChangeMinText" LostFocus="MinNumberLostFocus"/>
                 <Label Content="Максимальное число" HorizontalAlignment="Left" Margin="4,148,0,0" VerticalAlignment="Top"/>
                 <Slider Name="MaxNumberSlider" Margin="4,184,10,88" Minimum="1" SmallChange="1" Value="2" TickPlacement="BottomRight" Delay="1000" Maximum="1000" TickFrequency="50" ValueChanged="ChangeMaxNumber"/>
-                <TextBox Name="MaxNumberText" HorizontalAlignment="Left" Height="20" Margin="154,154,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="44" Text="1"/>
+                <TextBox Name="MaxNumberText" HorizontalAlignment="Left" Height="20" Margin="154,154,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="44" Text="1" LostFocus="MaxNumberLostFocus" TextChanged="ChangeMaxText"/>
                 <Grid MouseEnter="ComputerHonestyHint" MouseLeave="ComputerHonestyHintOff">
                     <Label Content="Честность компьютера" HorizontalAlignment="Left" Margin="4,217,0,0" VerticalAlignment="Top" MouseEnter="ComputerHonestyHint" MouseLeave="ComputerHonestyHintOff"/>
                     <Slider Name="ComputerHonestySlider" Margin="4,253,10,19" SmallChange="1" Value="100" TickPlacement="BottomRight" Delay="1000" Maximum="100" TickFrequency="5" ValueChanged="ChangeComputerHonesty" Initialized="ComputerHonestySliderInit"/>
-                    <TextBox Name="ComputerHonestyText" HorizontalAlignment="Left" Height="20" Margin="154,223,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="44" Text="100"/>
+                    <TextBox Name="ComputerHonestyText" HorizontalAlignment="Left" Height="20" Margin="154,223,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="44" Text="100" TextChanged="ChangeHonestlyText" LostFocus="HonestyLostFocus"/>
                 </Grid>
             </Grid>
         </GroupBox>

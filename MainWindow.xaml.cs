@@ -1,18 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.IO;
 
 namespace Numbers
 {
@@ -58,7 +47,6 @@ namespace Numbers
             GameSettings.IsEnabled = true;
             OnPlay.IsEnabled = false;
             LetsPlayButton.Content = "Играть";
-            StatusBar.Text = "";
         }
 
         private void ComputerHonestySliderInit(object sender, EventArgs e) 
@@ -135,6 +123,7 @@ namespace Numbers
             }
             else
             {
+                StatusBar.Text = "";
                 EndGame();
             }
         }
@@ -191,5 +180,87 @@ namespace Numbers
             }
         }
 
+        void ChangeSliderFromText(int min, int max, Slider slider, TextBox text_box)
+        {
+            int value;
+            try
+            {
+                value = int.Parse(text_box.Text);
+            }
+            catch (FormatException err)
+            {
+                StatusBar.Text = err.Message;
+                return;
+            }
+            if (value <= max && value >= min)
+            {
+                    slider.Value = value;
+            }
+            if (StatusBar != null)
+                StatusBar.Text = "";
+        }
+
+        void LostFocusOnText(int min, int max, TextBox text_box)
+        {
+            int value;
+            try
+            {
+                value = int.Parse(text_box.Text);
+            }
+            catch (FormatException err)
+            {
+                StatusBar.Text = err.Message;
+                return;
+            }
+
+            if(value > max)
+            {
+                text_box.Text = max.ToString();
+            }
+            if (value < min)
+            {
+                text_box.Text = min.ToString();
+            }
+        }
+
+        private void ChangeNumberOfStepsText(object sender, TextChangedEventArgs e)
+        {
+            ChangeSliderFromText(2, 20, NumberOfStepsSlider, NumberOfStepsText);
+        }
+
+        private void NumberOfStepsLostFocus(object sender, RoutedEventArgs e)
+        {
+            LostFocusOnText(2, 20, NumberOfStepsText);
+        }
+
+        private void ChangeMinText(object sender, TextChangedEventArgs e)
+        {
+            ChangeSliderFromText(0, 1000, MinNumberSlider, MinNumberText);
+        }
+
+        private void MinNumberLostFocus(object sender, RoutedEventArgs e)
+        {
+            LostFocusOnText(0, 1000, MinNumberText);
+        }
+
+        private void MaxNumberLostFocus(object sender, RoutedEventArgs e)
+        {
+            LostFocusOnText(1, 1000, MaxNumberText);
+        }
+
+        private void ChangeMaxText(object sender, TextChangedEventArgs e)
+        {
+            ChangeSliderFromText(0, 1000, MaxNumberSlider, MaxNumberText);
+        }
+
+        private void ChangeHonestlyText(object sender, TextChangedEventArgs e)
+        {
+            ChangeSliderFromText(0, 100, ComputerHonestySlider, ComputerHonestyText);
+        }
+
+        private void HonestyLostFocus(object sender, RoutedEventArgs e)
+        {
+            LostFocusOnText(0, 100, ComputerHonestyText);
+        }
     }
 }
