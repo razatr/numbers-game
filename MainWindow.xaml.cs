@@ -149,6 +149,8 @@ namespace Numbers
                 return;
             }
 
+            StatusBar.Text = "";
+
             step++;
 
 
