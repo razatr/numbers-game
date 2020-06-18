@@ -40,6 +40,8 @@ namespace Numbers
                 LetsPlayButton.Content = "Остановить это безумие";
                 StatusBar.Text = "Если вы сможете победить, считайте что вы прошли эту игру!";
             }
+
+            AnswerText.Focus();
         }
 
         void EndGame()
@@ -128,7 +130,7 @@ namespace Numbers
             }
         }
 
-        private void SendAnswer(object sender, RoutedEventArgs e)
+        void SendAnswer()
         {
             int answer;
             try
@@ -163,7 +165,7 @@ namespace Numbers
                 return;
             }
 
-            else if(answer > number && random <= honesty)
+            else if (answer > number && random <= honesty)
             {
                 //Число меньше, чем введенное
                 FeedbackText.Text = "Загаданное число меньше, чем введенное";
@@ -175,11 +177,16 @@ namespace Numbers
                 FeedbackText.Text = "Загаданное число больше, чем введенное";
             }
 
-            if(step == max_steps)
+            if (step == max_steps)
             {
                 FeedbackText.Text = "Вы проиграли. Загаданное число: " + number.ToString();
                 EndGame();
             }
+        }
+
+        private void SendAnswer(object sender, RoutedEventArgs e)
+        {
+            SendAnswer();
         }
 
         void ChangeSliderFromText(int min, int max, Slider slider, TextBox text_box)
@@ -263,6 +270,14 @@ namespace Numbers
         private void HonestyLostFocus(object sender, RoutedEventArgs e)
         {
             LostFocusOnText(0, 100, ComputerHonestyText);
+        }
+
+        private void OnKeyPress(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                SendAnswer();
+            }
         }
     }
 }

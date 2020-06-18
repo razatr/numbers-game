@@ -39,7 +39,7 @@
         </StatusBar>
         <GroupBox Name="OnPlay" Grid.Column="1" Header="Ход игры" HorizontalAlignment="Left" Height="327" Margin="10,85,0,0" VerticalAlignment="Top" Width="221" IsEnabled="False">
             <Grid>
-                <TextBox Name="AnswerText" HorizontalAlignment="Left" Height="23" Margin="45,218,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                <TextBox Name="AnswerText" HorizontalAlignment="Left" Height="23" Margin="45,218,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" KeyDown="OnKeyPress"/>
                 <Button Content="Ответить" HorizontalAlignment="Left" Margin="45,246,0,0" VerticalAlignment="Top" Width="120" Click="SendAnswer"/>
                 <TextBlock Name="FeedbackText" HorizontalAlignment="Left" Height="126" Margin="10,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="189"/>
                 <TextBlock HorizontalAlignment="Left" Margin="45,190,0,0" TextWrapping="Wrap" Text="Введите ответ" VerticalAlignment="Top" Width="120" Height="23"/>
