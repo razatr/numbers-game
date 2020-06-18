@@ -41,6 +41,8 @@ namespace Numbers
                 StatusBar.Text = "Если вы сможете победить, считайте что вы прошли эту игру!";
             }
 
+            step = 0;
+
             AnswerText.Focus();
         }
 
