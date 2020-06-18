@@ -177,7 +177,7 @@ namespace Numbers
 
             if(step == max_steps)
             {
-                FeedbackText.Text = "Вы проиграли. Загаданное число - " + number.ToString();
+                FeedbackText.Text = "Вы проиграли. Загаданное число: " + number.ToString();
                 EndGame();
             }
         }
